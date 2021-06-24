@@ -1,9 +1,9 @@
 const express=require("express");
 const bodyParser=require("body-parser");
-const request=require("request");
 const https=require("https");
 const app=express();
-app.use(express.static("Public"));
+
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.get("/",function(req,res){
   res.sendFile(__dirname+"/signup.html")
@@ -29,10 +29,10 @@ app.post("/",function(req,res){
   var jsonData=JSON.stringify(data);
   //refer this link for everything
   //https://mailchimp.com/developer/reference/lists/#post_/lists/-list_id-
-  const url="https://us18.api.mailchimp.com/3.0/lists/a81138d576";
+  const url=process.env.API_ID;
   const options={
     method:"POST",
-    auth:"Nithi:48762e62becd30528c24ee0cd1f845e9-us18"
+    auth:process.env.API_KEY
   };
   const request =https.request(url,options,function(response){
     if (response.statusCode==200){
