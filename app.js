@@ -29,10 +29,10 @@ app.post("/",function(req,res){
   var jsonData=JSON.stringify(data);
   //refer this link for everything
   //https://mailchimp.com/developer/reference/lists/#post_/lists/-list_id-
-  const url="https://us18.api.mailchimp.com/3.0/lists/a81138d576";
+  const url=process.env.API_ID;
   const options={
     method:"POST",
-    auth:"Nithi:48762e62becd30528c24ee0cd1f845e9-us18"
+    auth:process.env.API_KEY
   };
   const request =https.request(url,options,function(response){
     if (response.statusCode==200){
